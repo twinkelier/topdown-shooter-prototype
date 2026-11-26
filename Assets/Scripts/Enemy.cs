@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-
         enemyBullet.bulletDamage = Mathf.RoundToInt(Random.Range(minDamage, maxDamage));
 
         Vector3 direction = player.position - transform.position;
