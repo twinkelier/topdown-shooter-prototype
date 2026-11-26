@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusEffects: []
+  enemy: {fileID: 535388460677763763}
 --- !u!1 &5411111353209644680
 GameObject:
   m_ObjectHideFlags: 0

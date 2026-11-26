@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
-        print(Time.timeScale);
+        //print(Time.timeScale);
         XpAdder();
 
         if (Enemies.Count <= 0 && amountOfUpgrades > 0)

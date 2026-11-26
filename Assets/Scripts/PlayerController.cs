@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        print(gameManager.shootingEnabled);
+        //print(gameManager.shootingEnabled);
         gunDamage = Random.Range(minDamage, maxDamage);
 
         Movement();

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
-public class StatusEffect
+public abstract class StatusEffect : ScriptableObject
 {
     public enum StatusEffectCode
     {
@@ -10,29 +9,15 @@ public class StatusEffect
     }
     public delegate void EffectApplicator(Enemy enemy); // change this to a reference that has everything this class needs to change the status of.
 
-    public StatusEffectCode EffectCode;
+    [field: SerializeField] public StatusEffectCode EffectCode { get; protected set; }
 
-    [SerializeField] private float duration = 0f;
+    [field: SerializeField] public float Duration = 0f;
 
+    public EffectApplicator EntryEffect { get; protected set; }
 
-    public EffectApplicator EntryEffect;
+    public EffectApplicator TickEffect { get; protected set; }
+    [field: SerializeField] public float TickInterval { get; protected set; }
+    [System.NonSerialized] public float NextTickTime = 0f; // https://discussions.unity.com/t/resetting-a-scriptable-object/718311/4
 
-    public EffectApplicator TickEffect;
-    public float TickInterval = 0f;
-    public float NextTickTime = 0f;
-
-    public EffectApplicator ExitEffect;
-
-    public StatusEffect(StatusEffectCode code, float duration, EffectApplicator entryEffect,
-                        EffectApplicator tickEffect, float tickInterval, float nextTickTime, 
-                        EffectApplicator exitEffect)
-    {
-        EffectCode = code;
-        this.duration = duration;
-        EntryEffect = entryEffect;
-        TickEffect = tickEffect;
-        TickInterval = tickInterval;
-        NextTickTime = nextTickTime;
-        ExitEffect = exitEffect;
-    }
+    public EffectApplicator ExitEffect { get; protected set; }
 }

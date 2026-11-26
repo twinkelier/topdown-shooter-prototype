@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 
-public static class StatusEffectBuilder
+public class StatusEffectBuilder : MonoBehaviour
 {
-    //public static StatusEffectBuilder Instance { get; private set; }
+    public static StatusEffectBuilder Instance { get; private set; }
 
-    //private void Awake()
-    //{
-    //    if (Instance != null && Instance != this)
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
-    //    else
-    //    {
-    //        Instance = this;
-    //    }
-    //}
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
-    //public static StatusEffect 
+    //public static StatusEffect
 }

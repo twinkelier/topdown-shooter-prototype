@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    [SerializeField] private GameObject hitEffect;
+    [SerializeField] private GameObject hitParticle;
+    [SerializeField] private List<StatusEffect> onHitStatusEffects;
     private PlayerController playerController;
 
     private void Start()
@@ -19,12 +20,17 @@ public class PlayerBullet : MonoBehaviour
             OnBulletHit();
 
             collision.GetComponent<IHealth>().TakeDamage((int)playerController.gunDamage);
+
+            foreach (var effect in onHitStatusEffects)
+            {
+                collision.GetComponent<NEWStatusEffectManager>().AddEffect(effect);
+            }
         }
     }
 
     private void OnBulletHit()
     {   
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+        GameObject effect = Instantiate(hitParticle, transform.position, Quaternion.identity);
 
         Destroy(this.gameObject);
         Destroy(effect, 1f);

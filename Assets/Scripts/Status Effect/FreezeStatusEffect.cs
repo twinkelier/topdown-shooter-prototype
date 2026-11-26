@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FreezeStatusEffect : MonoBehaviour
+public class FreezeStatusEffect : StatusEffect
 {
 
 }

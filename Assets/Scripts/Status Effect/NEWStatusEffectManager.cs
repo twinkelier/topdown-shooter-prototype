@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mono.Cecil.Cil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,7 +10,7 @@ using UnityEngine;
 public class NEWStatusEffectManager : MonoBehaviour
 {
     [SerializeField] private List<StatusEffect> statusEffects;
-    private Enemy enemy; //CHANGE THIS TO SOMETBHING MORE GENERIC PLEASE
+    [SerializeField] private Enemy enemy; //CHANGE THIS TO SOMETBHING MORE GENERIC PLEASE
 
     private void Awake()
     {
@@ -19,22 +20,39 @@ public class NEWStatusEffectManager : MonoBehaviour
     public void AddEffect(StatusEffect effect)
     {
         statusEffects.Add(effect);
-        effect.EntryEffect?.Invoke(enemy);
+        effect.EntryEffect.Invoke(enemy);
     }
 
     private void Update()
     {
         OnTickEffect();
+        RemoveExpiredEffects();
     }
 
     public void OnTickEffect()
     {
         foreach (var effect in statusEffects)
         {
-            if (effect.NextTickTime > effect.TickInterval)
+            if (effect.TickEffect != null) // would be stupid to try and invoke the tick effect if there is non.
             {
-                effect.TickEffect?.Invoke(enemy);
-                effect.NextTickTime = effect.TickInterval + Time.timeSinceLevelLoad;
+                if (Time.timeSinceLevelLoad >= effect.NextTickTime)
+                {
+                    effect.TickEffect.Invoke(enemy);
+                    effect.NextTickTime = Time.timeSinceLevelLoad + effect.TickInterval;
+                }
+            }
+        }
+    }
+
+    public void RemoveExpiredEffects()
+    {
+        foreach (var effect in statusEffects.ToList())
+        {
+            //effect.Duration -= Time.timeSinceLevelLoad;
+            if (effect.Duration <= 0f)
+            {
+                statusEffects.Remove(effect);
+                effect.ExitEffect?.Invoke(enemy);
             }
         }
     }

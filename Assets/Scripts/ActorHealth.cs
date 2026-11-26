@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public abstract class ActorHealth : MonoBehaviour, IHealth
 {
     [SerializeField] protected int maxHealth = 300;
-    protected int currentHealth;
+    [SerializeField] protected int currentHealth;
     public int CurrentHealth => currentHealth;
 
     protected virtual void Start()
