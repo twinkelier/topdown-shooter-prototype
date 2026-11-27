@@ -33,7 +33,7 @@ public class NEWStatusEffectManager : MonoBehaviour
     {
         foreach (var effect in statusEffects)
         {
-            if (effect.TickEffect != null) // would be stupid to try and invoke the tick effect if there is non.
+            if (effect.TickEffect != null) // would be stupid to do a tick with no tick effect
             {
                 if (Time.timeSinceLevelLoad >= effect.NextTickTime)
                 {
@@ -48,8 +48,8 @@ public class NEWStatusEffectManager : MonoBehaviour
     {
         foreach (var effect in statusEffects.ToList())
         {
-            //effect.Duration -= Time.timeSinceLevelLoad;
-            if (effect.Duration <= 0f)
+            if (effect.CanExpire == false) return;
+            if (Time.timeSinceLevelLoad >= effect.CurrentTime)
             {
                 statusEffects.Remove(effect);
                 effect.ExitEffect?.Invoke(enemy);

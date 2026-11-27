@@ -6,16 +6,15 @@ public class PoisonStatusEffect : StatusEffect
 {
     [SerializeField] private int damageOverTime;
 
-    private void OnValidate()
+    protected override void OnEnable()
     {
-        EntryEffect += (Enemy e) =>
-        {
-            if (e)
-            {
-                Debug.Log("ON HIT EFFECT BABY");
-                // here i could spawn in some kind of cool green on hit effect too
-            }
-        };
+        //EntryEffect += (Enemy e) =>
+        //{
+        //    if (e)
+        //    {
+        //        // here i could spawn in some kind of cool green on hit effect too
+        //    }
+        //};
         TickEffect += DoPoisonDamage;
     }
 
@@ -23,5 +22,6 @@ public class PoisonStatusEffect : StatusEffect
     {
         IHealth _health = enemy.gameObject.GetComponent<IHealth>();
         _health.TakeDamage(damageOverTime);
+        Debug.Log($"<color=green>{damageOverTime} POISON DAMAGE</color>");
     }
 }

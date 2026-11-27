@@ -177,7 +177,7 @@ MonoBehaviour:
   timeBetweenShots: 1
   minDamage: 50
   maxDamage: 75
-  moveSpeed: 3
+  MoveSpeed: 3
 --- !u!114 &5456926200099313758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 300
+  currentHealth: 0
   healthDrop: {fileID: 1914642194236070883, guid: 47efb5780ebd7174dba549d1c113e3a3, type: 3}
 --- !u!114 &6789289753498504309
 MonoBehaviour:

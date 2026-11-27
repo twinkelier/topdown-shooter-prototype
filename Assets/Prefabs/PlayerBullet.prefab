@@ -148,4 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitParticle: {fileID: 5517855372383831565, guid: 9a5dca28f19574d4abf666b1c8350037, type: 3}
   onHitStatusEffects:
+  - {fileID: 11400000, guid: 30986090afcb10e46b7c3c9875121f92, type: 2}
   - {fileID: 11400000, guid: e74302a2bc89b5b4883d6eb68b9e31ff, type: 2}

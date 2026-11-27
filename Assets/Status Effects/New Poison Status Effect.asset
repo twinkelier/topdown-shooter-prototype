@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New Poison Status Effect
   m_EditorClassIdentifier: 
   <EffectCode>k__BackingField: 1
-  Duration: 10
+  <CanExpire>k__BackingField: 0
+  <Duration>k__BackingField: 3
   <TickInterval>k__BackingField: 1
-  damageOverTime: 100
+  damageOverTime: 25

@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     private float timeStamp = 0;
 
     [Header("Movement")]
-    [SerializeField] private float moveSpeed;
+    public float MoveSpeed;
     private Transform player;
 
     [Header("Remove and Add Enemies")]
@@ -51,11 +51,11 @@ public class Enemy : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.position) >= 4)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, MoveSpeed * Time.deltaTime);
         }
         else if (Vector2.Distance(transform.position, player.position) <= 2)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, -(moveSpeed + 6) * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, -(MoveSpeed + 6) * Time.deltaTime);
         }
 
         if (Vector2.Distance(transform.position, player.position) < 4)
