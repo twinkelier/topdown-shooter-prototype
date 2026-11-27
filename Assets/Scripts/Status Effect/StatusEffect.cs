@@ -15,6 +15,8 @@ public abstract class StatusEffect : ScriptableObject
 
     protected abstract void OnEnable();
 
+    protected abstract void OnDisable();
+
     [field: SerializeField] public StatusEffectCode EffectCode { get; protected set; }
 
     [field: SerializeField] public bool CanExpire { get; protected set; }

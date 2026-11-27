@@ -18,6 +18,11 @@ public class PoisonStatusEffect : StatusEffect
         TickEffect += DoPoisonDamage;
     }
 
+    protected override void OnDisable()
+    {
+        TickEffect = null;
+    }
+
     private void DoPoisonDamage(Enemy enemy)
     {
         IHealth _health = enemy.gameObject.GetComponent<IHealth>();

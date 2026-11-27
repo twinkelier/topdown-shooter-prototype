@@ -20,7 +20,7 @@ public class NEWStatusEffectManager : MonoBehaviour
     public void AddEffect(StatusEffect effect)
     {
         statusEffects.Add(effect);
-        effect.EntryEffect.Invoke(enemy);
+        effect.EntryEffect?.Invoke(enemy);
     }
 
     private void Update()
@@ -37,7 +37,7 @@ public class NEWStatusEffectManager : MonoBehaviour
             {
                 if (Time.timeSinceLevelLoad >= effect.NextTickTime)
                 {
-                    effect.TickEffect.Invoke(enemy);
+                    effect.TickEffect?.Invoke(enemy);
                     effect.NextTickTime = Time.timeSinceLevelLoad + effect.TickInterval;
                 }
             }
@@ -48,11 +48,12 @@ public class NEWStatusEffectManager : MonoBehaviour
     {
         foreach (var effect in statusEffects.ToList())
         {
-            if (effect.CanExpire == false) return;
+            if (effect.CanExpire == false) continue;
+            print(Time.timeSinceLevelLoad);
             if (Time.timeSinceLevelLoad >= effect.CurrentTime)
             {
-                statusEffects.Remove(effect);
                 effect.ExitEffect?.Invoke(enemy);
+                statusEffects.Remove(effect);
             }
         }
     }
